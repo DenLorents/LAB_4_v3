@@ -97,9 +97,9 @@ public class Main {
                 case 1:
                     System.out.println("Введите путь к файлу:");
                     String wayToFile = scan.nextLine();
-                    ArrayList<Quadrate> triangleArrayList = new ArrayList<>();
-                    triangleArrayList.addAll(Arrays.asList(quadrates));
-                    BinaryDataSaver.save(triangleArrayList, wayToFile);
+                    ArrayList<Quadrate> quadrateArrayList = new ArrayList<>();
+                    quadrateArrayList.addAll(Arrays.asList(quadrates));
+                    BinaryDataSaver.save(quadrateArrayList, wayToFile);
                     System.out.println("Файл сохранён");
                     break;
                 case 2:

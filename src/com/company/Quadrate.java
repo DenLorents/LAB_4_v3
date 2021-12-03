@@ -3,9 +3,9 @@ package com.company;
 import java.util.Scanner;
 public class Quadrate {
     long numberQuadrate;
-    int x1,x2,x3,x4;
-    int y1,y2,y3,y4;
-    double side1,side2,side3,side4;
+    int x1, x2, x3, x4;
+    int y1, y2, y3, y4;
+    double side1, side2, side3, side4;
     double diagonal1, diagonal2;
     double perimeter;
     boolean rhombus;
@@ -18,7 +18,7 @@ public class Quadrate {
         return numberQuadrate;
     }
 
-    // 1
+
     public void setX1(int x1) {
         this.x1 = x1;
     }
