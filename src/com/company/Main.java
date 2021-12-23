@@ -18,41 +18,7 @@ public class Main {
         return func;
     }
 
-    public static void main(String[] args) throws IOException {
-        Scanner scan = new Scanner(System.in);
-        int inCountTriangle = 1;
-        System.out.println("Введите количество четырёхугольников: " + inCountTriangle);
-
-        Quadrate[] quadrates = new Quadrate[inCountTriangle];
-
-        int CountQuadrate = 0;
-        int function = 0;
-
-        for (int i = 0; i < quadrates.length; i++) {
-            quadrates[i] = new Quadrate();
-
-            System.out.print("Введите x1 для четырёхугольника №" + (i + 1) + ": ");
-            quadrates[i].setX1(scan.nextInt());
-            System.out.print("Введите y1 для четырёхугольника №" + (i + 1) + ": ");
-            quadrates[i].setY1(scan.nextInt());
-
-            System.out.print("Введите x2 для четырёхугольника №" + (i + 1) + ": ");
-            quadrates[i].setX2(scan.nextInt());
-            System.out.print("Введите y2 для четырёхугольника №" + (i + 1) + ": ");
-            quadrates[i].setY2(scan.nextInt());
-
-            System.out.print("Введите x3 для четырёхугольника №" + (i + 1) + ": ");
-            quadrates[i].setX3(scan.nextInt());
-            System.out.print("Введите y3 для четырёхугольника №" + (i + 1) + ": ");
-            quadrates[i].setY3(scan.nextInt());
-
-            System.out.print("Введите x4 для четырёхугольника №" + (i + 1) + ": ");
-            quadrates[i].setX4(scan.nextInt());
-            System.out.print("Введите y4 для четырёхугольника №" + (i + 1) + ": ");
-            quadrates[i].setY4(scan.nextInt());
-
-            quadrates[i].numberQuadrate = ++CountQuadrate;
-        }
+    private static void Count(Quadrate[] quadrates){
         //Формулы и подсчет сторон, диагоналей, периметра четырёхугольника и проверка на ромб
         for (int i = 0; i < quadrates.length; i++) {
             // d = √((x2-x1)²+(y2-y1)²),
@@ -82,16 +48,66 @@ public class Main {
                 quadrates[i].rhombus = true;
             }
         }
+    }
+
+    public static void main(String[] args) throws IOException {
+        Scanner scan = new Scanner(System.in);
+        int inCountQuadrate = 1;
+
+        Quadrate[] quadrates = new Quadrate[inCountQuadrate];
+
+        int CountQuadrate = 0;
+        int function;
+
+        System.out.println("Если хотите ввести данные, введите - 1\nЕсли нет, введите - 0");
+        do {
+            function = CheckCorrectFunction(scan.nextLine());
+            switch (function){
+                case 1:
+                    System.out.println("Введите количество четырёхугольников: " + inCountQuadrate);
+                    for (int i = 0; i < quadrates.length; i++) {
+                        quadrates[i] = new Quadrate();
+
+                        System.out.print("Введите x1 для четырёхугольника №" + (i + 1) + ": ");
+                        quadrates[i].setX1(scan.nextInt());
+                        System.out.print("Введите y1 для четырёхугольника №" + (i + 1) + ": ");
+                        quadrates[i].setY1(scan.nextInt());
+                        System.out.print("Введите x2 для четырёхугольника №" + (i + 1) + ": ");
+                        quadrates[i].setX2(scan.nextInt());
+                        System.out.print("Введите y2 для четырёхугольника №" + (i + 1) + ": ");
+                        quadrates[i].setY2(scan.nextInt());
+
+                        System.out.print("Введите x3 для четырёхугольника №" + (i + 1) + ": ");
+                        quadrates[i].setX3(scan.nextInt());
+                        System.out.print("Введите y3 для четырёхугольника №" + (i + 1) + ": ");
+                        quadrates[i].setY3(scan.nextInt());
+
+                        System.out.print("Введите x4 для четырёхугольника №" + (i + 1) + ": ");
+                        quadrates[i].setX4(scan.nextInt());
+                        System.out.print("Введите y4 для четырёхугольника №" + (i + 1) + ": ");
+                        quadrates[i].setY4(scan.nextInt());
+
+                        quadrates[i].numberQuadrate = ++CountQuadrate;
+                    }
+                    Count(quadrates);
+                    break;
+                case 0:
+                    break;
+                default:
+                    System.out.println("Неверный ввод");
+            }
+        }while(function != 0 && function != 1);
 
         do {
             System.out.println("\nСписок функций: ");
             System.out.println("1) Сохранение в файл");
             System.out.println("2) Загрузить из файла");
             System.out.println("3) Выход из программы");
+
             do {
                 System.out.print("Введите номер функции: ");
                 function = CheckCorrectFunction(scan.nextLine());
-            } while (function == -1);
+            }while(function == -1);
 
             switch (function) {
                 case 1:
@@ -108,10 +124,10 @@ public class Main {
                     System.out.println("Файл загружен");
                     break;
                 case 3:
-                    return;
+                    System.exit(0);
                 default:
                     System.out.println("\nТакой функции нет");
             }
-        } while (function != 0);
+        } while (function != 1 && function != 2 && function != 3);
     }
 }
